@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+//import { styled } from '@mui/material/styles';
 import { makeStyles } from "@mui/styles";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
@@ -9,28 +10,47 @@ import Brightness6Icon from "@mui/icons-material/Brightness6";
 import DehazeIcon from "@mui/icons-material/Dehaze";
 import WbCloudyIcon from "@mui/icons-material/WbCloudy";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 	component: {
-		margin: 50,
+		margin: 5,
 	},
 	value: {
 		color: "#fff",
 	},
 
 	icons: {
-		marginRight: '25px !important',
-        position : 'relative',
-        top : 5,
+		marginRight: "20px !important",
+		position: "relative",
+		top: 5,
 		color: "darkred",
-      
+		'@media (max-width: 540px)' : {
+			
+			marginRight: "8px !important"
+		
+		},
 	},
 	cot: {
-		padding: 10,
-		fontSize: '20px !important',
-		letterSpacing: '2px !important',
+		padding: 1,
+		fontSize: "16px !important",
+		"@media(max-width : 480px)": {
+			fontSize: "12px !important",
+
+		},
+		'@media (max-width: 390px)' : {
+			fontSize: "11px !important",
+			
+		
+		},
+		'@media (max-width: 379px)' : {
+			fontSize: "9px !important",
+			
+		
+		},
+		letterSpacing: "2px !important",
 		textAlign: "left",
+		fontWeight: "bolder !important",
 	},
-});
+}));
 
 function Info({ data }) {
 	const classes = useStyles();
@@ -54,16 +74,15 @@ function Info({ data }) {
 			</Typography>
 			<Typography className={classes.cot}>
 				<OpacityIcon className={classes.icons} />
-				Humidity:
+				Humidity:{" "}
 				<Box component="span" className={classes.value}>
 					{data.main.humidity}%
 				</Box>
 			</Typography>
 			<Typography className={classes.cot}>
 				<Brightness5Icon className={classes.icons} />
-				Sunrise:
+				Sunrise:{" "}
 				<Box component="span" className={classes.value}>
-					{" "}
 					{new Date(data.sys.sunrise * 1000).toLocaleTimeString()}
 				</Box>
 			</Typography>

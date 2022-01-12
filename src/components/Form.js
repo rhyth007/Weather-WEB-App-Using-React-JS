@@ -7,10 +7,16 @@ const useStyles = makeStyles({
 	input: {
 		color: "#fff !important",
 		marginRight: "5px !important",
+		alignSelf: "center !important",
 	},
 	components: {
 		padding: 10,
 		background: "#445A6f",
+		display: "flex !important",
+		justifyContent: "flex-start !important",
+		"@media(max-width : 768px)": {
+			flexDirection: "column !important",
+		},
 	},
 });
 
@@ -21,28 +27,24 @@ function Form() {
 	const [country, setCountry] = useState("");
 	const [click, handleClick] = useState(false);
 
-
 	const handleCityChange = (value) => {
 		setCity(value);
 	};
 	const handleCountryChange = (value) => {
 		setCountry(value);
 	};
-	
-	useEffect(() => {
 
-	const getW = async () => {
+	useEffect(() => {
+		const getW = async () => {
 			await getData(city, country).then((response) => {
 				setdata(response.data);
 				console.log(response.data);
 			});
-		
 		};
 		getW();
 		handleClick(false);
 		// eslint-disable-next-line
-	},[click]);
-
+	}, [click]);
 
 	return (
 		<>
@@ -65,7 +67,7 @@ function Form() {
 				<Button
 					variant="contained"
 					sx={{
-						width: 150,
+						width: 120,
 						height: 40,
 						background: "#e67e22",
 						"&:hover": {
@@ -74,6 +76,16 @@ function Form() {
 						},
 						color: "white",
 						marginTop: 1,
+						fontSize: 12,
+						alignSelf: "center",
+						fontWeight: "bolder",
+						fontFamily: "Arial, Helvetica, sans-serif",
+
+						"@media(max-width : 480px)": {
+							width: 100,
+							height: 35,
+							fontSize: 9,
+						},
 					}}
 					onClick={() => handleClick(true)}
 				>
