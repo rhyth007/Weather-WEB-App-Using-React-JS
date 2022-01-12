@@ -17,21 +17,10 @@ const useStyles = makeStyles({
 function Form() {
 	const classes = useStyles();
 	const [data, setdata] = useState();
-	const [city, setCity] = useState("Vasai");
-	const [country, setCountry] = useState("India");
+	const [city, setCity] = useState("");
+	const [country, setCountry] = useState("");
 	const [click, handleClick] = useState(false);
 
-	useEffect(() => {
-			const getW = async () => {
-				city && await getData(city, country).then((response) => {
-					setdata(response.data);
-					console.log(response.data);
-				});
-			
-			};
-			getW();
-			handleClick(false);
-		},[click]);
 
 	const handleCityChange = (value) => {
 		setCity(value);
@@ -39,6 +28,21 @@ function Form() {
 	const handleCountryChange = (value) => {
 		setCountry(value);
 	};
+	
+	useEffect(() => {
+
+	const getW = async () => {
+			await getData(city, country).then((response) => {
+				setdata(response.data);
+				console.log(response.data);
+			});
+		
+		};
+		getW();
+		handleClick(false);
+		// eslint-disable-next-line
+	},[click]);
+
 
 	return (
 		<>
